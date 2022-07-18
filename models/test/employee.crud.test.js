@@ -35,6 +35,8 @@ describe('Employee CRUD', () => {
 
       // const expectedLength = 2;
       // expect(employees.length).to.be.equal(expectedLength);
+
+      // https://stackoverflow.com/questions/19916881/mongoose-populate-returning-null-or-undefined
     });
 
     it('should return all the data with find method', async () => {
