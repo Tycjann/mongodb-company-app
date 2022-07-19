@@ -21,22 +21,20 @@ describe('Employee CRUD', () => {
 
       const testEmpTwo = new Employee({ firstName: 'FirstName #2', lastName: 'lastName #2', department: '62c9bf630b3b7578e355b6f1' });
       await testEmpTwo.save();
+
+      const testDepOne = new Department({ _id: '62c9bf010b3b7578e355b6ee', name: 'Department #1' });
+      await testDepOne.save();
+
+      const testDepTwo = new Department({ _id: '62c9bf630b3b7578e355b6f1', name: 'Department #2' });
+      await testDepTwo.save();
     });
 
     it('should return all the data with find method with populate', async () => {
       const employees = await Employee.find().populate('department');
-      console.log('#1', employees);
+      // console.log('#1', employees);
 
-      const employees2 = await Employee.find().populate('department').exec();
-      console.log('#2', employees2);
-
-      // const employees3 = await Employee.findOne({ department: '62c9bf630b3b7578e355b6f1' });
-      // console.log('#3',employees3);
-
-      // const expectedLength = 2;
-      // expect(employees.length).to.be.equal(expectedLength);
-
-      // https://stackoverflow.com/questions/19916881/mongoose-populate-returning-null-or-undefined
+      const expectedLength = 2;
+      expect(employees.length).to.be.equal(expectedLength);
     });
 
     it('should return all the data with find method', async () => {
@@ -153,9 +151,9 @@ describe('Employee CRUD', () => {
 
     });
 
-
     afterEach(async () => {
       await Employee.deleteMany();
+      await Department.deleteMany();
     });
 
   });
